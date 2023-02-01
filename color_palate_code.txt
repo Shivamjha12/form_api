@@ -1,0 +1,4 @@
+dark purple: rgba(14,21,50,255),#0e1532
+light purple button: rgba(63,39,215,255), #3f27d7
+light purple heading: #5f3ade
+body bg color: #edecf4
