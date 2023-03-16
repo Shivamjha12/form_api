@@ -1,4 +1,5 @@
 <html>
+<title>Sign Up</title>
 <head>
 <style>
 body{
@@ -52,8 +53,8 @@ input[type="password"]{
       justify-content:space-between;
       flex-direction:row;
       flex-wrap:wrap;
-      margin-left:  65%;
-      margin-top:  10%;
+      margin-left:  53%;
+      margin-top:  -52%;
       }
 .item {
 position: relative;
@@ -74,35 +75,55 @@ margin: 8px 0;
     cursor: pointer;
 }
 .mainDiv{
-    margin-top: -6.3%;
+    margin-top: 5%;
     background-color: #fff;
     height: 580px;
-    margin-left: 3%;
-    width: 1290px;
+    margin-left: 13%;
+    margin-right: 3%;
+    width: 1100px;
 }
 .headform{
-    margin-top: 90px;
+    margin-top: 57px;
 }
-
+#btnsignup{
+    margin-top: 28px;
+    margin-left: 300px;
+    background: #fff;
+    width: 120px;
+    padding: 8px;
+    border: 3px solid;
+    border-color: #3f27d7;
+    border-radius: 3px; 
+    font-size: bold 10px;
+    color: #3f27d7;
+    cursor: pointer;
+}
 </style>
 </head>
 <body>
 <div class="mainDiv">
+<div class="imagediv">
+    <img src="https://c0.wallpaperflare.com/preview/414/491/824/wing-mountain-snow-winter.jpg" style="height: 97%; width: 35%; margin-left:5%;"/>
+</div>
 <div class="formdiv">
+    <div class="signupbtn">
+        <button id="btnsignup" >SIGN IN</button>
+    </div>
+    
     <div class="headform">
         <div class="formheading">
         <h1>Explore and Experience</h1>
         <p>Get into your first comfortable journey yet. All the way up</p>
         </div>
-        <form class="formMain" >
+        <form class="formMain" id="formMain" onsubmit='return onSubmit(this)' method="post" >
         <div class="item" >
-        <input type="text1" id="fname" name="fname" placeholder="First name" >
+        <input type="text1" id="first_name" name="first_name" placeholder="First name" >
         </div>
         <div class="item" style="margin-left:52.2%; margin-top:-11.2%; ">
-        <input type="text1" id="lname" name="lname" placeholder="Last name" >
+        <input type="text1" id="last_name" name="last_name" placeholder="Last name" >
         </div>
         <div class="item">
-        <input type="text" id="emailinput" name="emailinput" placeholder="Email">
+        <input type="text" id="email" name="email" placeholder="Email">
         <div class="item">
         <input type="text" id="username" name="username" placeholder="Username">
         </div>
@@ -110,7 +131,7 @@ margin: 8px 0;
         <input type="password" id="password" name="password" placeholder="Password" >
         </div>
         <div class="item">
-        <input type="password" id="password1" name="password1" placeholder="Confirm Password">
+        <input type="password" id="password2" name="password2" placeholder="Confirm Password">
         </div>
         <div class="btn-block">
         <button id="submitButton" type="submit">GET STARTED</button>
@@ -119,5 +140,26 @@ margin: 8px 0;
     </div>
 </div>
 </div>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script>
+
+    var formData = {};
+    var data1 = {};
+    var sd;
+    function onSubmit(form){
+        var data = $(form).serializeArray();
+        $(data).each(function(index, obj){
+            data1[obj.name] = obj.value;
+        });
+        console.log(data1);
+        sd = JSON.stringify(data1);
+        console.log(sd);
+        axios
+        .post('http://127.0.0.1:8000/user/register/', data1)
+        .then(response => alert(JSON.stringify(this.info = response.data)) )
+        return false; //don't submit
+    }
+</script>
 </body>
 </html>
